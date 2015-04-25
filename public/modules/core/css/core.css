@@ -172,6 +172,19 @@ footer {
 
 /* -- end custom css for Bootstrap 3.x --*/
 
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #444;
+ }
+
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+  background-color: #666;
+}
+
+
+
+
 .content {
 	margin-top: 50px;
 }
