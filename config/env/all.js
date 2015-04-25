@@ -43,8 +43,8 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				'public/lib/bootstrap/dist/css/bootstrap.min.css',
+				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -52,11 +52,14 @@ module.exports = {
 				'public/lib/angular-animate/angular-animate.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/jQuery/dist/jquery.min.js',
+				'public/lib/bootstrap/dist/js/bootstrap.min.js',
 			]
 		},
 		css: [
-			'public/modules/**/css/*.css'
+			'public/modules/**/css/*.css',
+			'public/lib/components-font-awesome/css/font-awesome.min.css'
 		],
 		js: [
 			'public/config.js',
