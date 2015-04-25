@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
  * Profile Schema
  */
 var TopicSchema = new Schema({
+	_id: Schema.Types.Mixed,
 	created: {
 		type: Date,
 		default: Date.now
@@ -24,13 +25,24 @@ var TopicSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	topWords: [{
+	topwords: [{
 		word: {
 			type: String,
 			default: '',
 			trim: true
 	  },
 		probability: {
+			type: String,
+			default: 0
+		}
+	}],
+	topbigrams: [{
+		bigram: {
+			type: String,
+			default: '',
+			trim: true
+	  },
+		prob: {
 			type: String,
 			default: 0
 		}

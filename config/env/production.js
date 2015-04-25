@@ -21,7 +21,7 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
+				//'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
@@ -29,7 +29,9 @@ module.exports = {
 				'public/lib/angular-animate/angular-animate.min.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
 				'public/lib/angular-ui-utils/ui-utils.min.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js'
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+				'public/lib/jQuery/dist/jquery.min.js',
+				'public/lib/bootstrap/dist/js/bootstrap.min.js'
 			]
 		},
 		css: 'public/dist/application.min.css',

@@ -55,11 +55,11 @@ var CourseSchema = new Schema({
 		type: String
 	}],
 	topics: [{
-		name: {
-			type: Schema.ObjectId,
+		topicRef: {
+			type: Schema.Types.Mixed,
 			ref: 'Topic'
 		},
-		probability: {
+		prob: {
 			type: String,
 			default: 0
 		},

@@ -4,7 +4,7 @@
 angular.module('profiles').factory('Profiles', ['$resource',
 	function($resource) {
 		return $resource('profiles/:profileId', {
-			articleId: '@_id'
+			profileId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'

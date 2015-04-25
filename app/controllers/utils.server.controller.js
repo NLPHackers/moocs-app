@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	_ = require('lodash'),
-	//topicData = require( '../seed/topics.json');
+	topicData = require( '../seed/topics.json'),
   courseData = require( '../seed/courses.json');
 
 // https://gist.github.com/bclinkinbeard/5171359
@@ -22,13 +22,13 @@ exports.reset = function( req, res ) {
 
     // populate the foods collection from json data
     // nothing fancy here as Food documents do not reference anything else
-    /*for( var i = 0; i < topicData.length; i++ ) {
+    for( var i = 0; i < topicData.length; i++ ) {
         new Topic( topicData[ i ] ).save();
-    }*/
+    }
 
 
-		for( var i = 0; i < courseData.length; i++ ) {
-				new Course( courseData[ i ] ).save();
+		for( var j = 0; j < courseData.length; j++ ) {
+				new Course( courseData[ j ] ).save();
 		}
 
 
