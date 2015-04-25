@@ -9,23 +9,32 @@ var mongoose = require('mongoose'),
 /**
  * Profile Schema
  */
-var ProfileSchema = new Schema({
+var TopicSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
 	},
-	title: {
-		type: String,
-		default: '',
-		trim: true,
-		required: 'Title cannot be blank'
-	},
-	content: {
+	name: {
 		type: String,
 		default: '',
 		trim: true
 	},
-	courses: [{ type : Schema.ObjectId, ref: 'Course' }]
+	category: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	topWords: [{
+		word: {
+			type: String,
+			default: '',
+			trim: true
+	  },
+		probability: {
+			type: String,
+			default: 0
+		}
+	}],
 });
 
-mongoose.model('Profile', ProfileSchema);
+mongoose.model('Topic', TopicSchema);

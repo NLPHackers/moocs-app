@@ -25,6 +25,11 @@ exports.create = function(req, res) {
 	});
 };
 
+exports.get = function(req, res) {
+	res.json(req.profile);
+};
+
+
 /**
  * Profile middleware
  */

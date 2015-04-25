@@ -17,13 +17,13 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			if ($scope.courses.indexOf(course) === -1) {
 				$scope.courses.push(course);
 			}
-		}
+		};
 
 		$scope.removeCourse = function(course) {
 			var index = $scope.courses.indexOf(course);
 			if (index !== -1) {
-				$scope.courses.splice(index, 1);;
+				$scope.courses.splice(index, 1);
 			}
-		}
+		};
 	}
 ]);
