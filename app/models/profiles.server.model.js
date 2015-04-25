@@ -7,9 +7,9 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * Article Schema
+ * Profile Schema
  */
-var ArticleSchema = new Schema({
+var ProfileSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
@@ -25,10 +25,7 @@ var ArticleSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
-	}
+	courses: [{ type : ObjectId, ref: 'Course' }]
 });
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model('Profile', ProfileSchema);
