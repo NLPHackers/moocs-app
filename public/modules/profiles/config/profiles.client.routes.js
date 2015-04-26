@@ -1,7 +1,7 @@
 'use strict';
 
 // Setting up route
-angular.module('profiles').config(['$stateProvider',
+angular.module('profilesUser').config(['$stateProvider',
 	function($stateProvider) {
 		// Articles state routing
 		$stateProvider.

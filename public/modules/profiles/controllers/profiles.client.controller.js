@@ -1,7 +1,7 @@
 'use strict';
 
 // Articles controller
-angular.module('profiles').controller('ProfilesController', ['$scope', '$stateParams', '$location', '$http', 'Profiles',
+angular.module('profilesUser').controller('ProfilesController', ['$scope', '$stateParams', '$location', '$http', 'Profiles',
 	function($scope, $stateParams, $location, $http, Profiles) {
 		$scope.getAddress = function(viewValue) {
 			var params = {address: viewValue, sensor: false};
@@ -92,19 +92,6 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
             y: function(d){return d.y;},
             showLabels: false,
             pie: {
-                startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
-                endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
-            },
-            transitionDuration: 500,
-            legend: {
-                margin: {
-                    top: 5,
-                    right: 120,
-                    bottom: 5,
-                    left: 0
-                }
-            },
-						pie: {
 							dispatch: {
 									elementClick: function(e) {
 										var label = e.label;
@@ -118,8 +105,17 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 											});
 										});
 									},
-							}
-						},
+								},
+            },
+            transitionDuration: 500,
+            legend: {
+                margin: {
+                    top: 5,
+                    right: 120,
+                    bottom: 5,
+                    left: 0
+                }
+            },
         }
     };
 
