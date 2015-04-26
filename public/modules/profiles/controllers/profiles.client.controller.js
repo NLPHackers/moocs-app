@@ -10,7 +10,7 @@ angular.module('profilesUser').controller('ProfilesController', ['$scope', '$sta
 				return res.data.results;
 			});
 		};
-
+		$scope.url = $location.absUrl();
 		$scope.profile = {};
 		$scope.profile.courses = [];
 
