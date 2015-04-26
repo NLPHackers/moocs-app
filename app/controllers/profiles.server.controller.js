@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Profile = mongoose.model('Profile'),
+	Topic = mongoose.model('Topic'),
 	_ = require('lodash');
 
 /**
@@ -45,14 +46,21 @@ exports.profileByID = function(req, res, next, id) {
 		});
 	}
 
-	Profile.findById(id).populate('courses').exec(function(err, profile) {
+	Profile.findById(id).populate('courses courses.topics').exec(function(err, profile) {
 		if (err) return next(err);
 		if (!profile) {
 			return res.status(404).send({
 				message: 'Profile not found'
 			});
 		}
-		req.profile = profile;
-		next();
+		var options = {
+			path: 'courses.topics.topicRef'
+		};
+		Topic.populate(profile, options, function (err, result) {
+			if (err) return next(err);
+			req.profile = result;
+			next();
+		})
+
 	});
 };
