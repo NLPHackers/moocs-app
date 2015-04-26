@@ -10,3 +10,5 @@ What kind of black magic is this ?
 ----------------------------------
 
 We'll get the video content, analyze it with our state-of-the-art Machine Learning and Natural Language processing techniques such as hierarchical Latent Dirichlet Analysis.
+
+Machine learning and data crawling scripts available [here](https://github.com/NLPHackers/Moocs-python).
