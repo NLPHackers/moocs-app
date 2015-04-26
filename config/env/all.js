@@ -56,7 +56,8 @@ module.exports = {
 				'public/lib/jQuery/dist/jquery.min.js',
 				'public/lib/bootstrap/dist/js/bootstrap.min.js',
 				'public/lib/d3/d3.min.js',
-				'public/lib/angular-nvd3/dist/angular-nvd3.min.js'
+				'public/lib/angular-nvd3/dist/angular-nvd3.min.js',
+				'public/lib/underscore/underscore-min.js'
 			]
 		},
 		css: [
