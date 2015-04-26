@@ -56,14 +56,38 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			});
 		};
 
+
 		$scope.findProfile = function() {
 			$scope.profile = Profiles.get({
 				profileId: $stateParams.profileId
 			}, function() {
 				$scope.data = transformData();
+				$scope.datatopic = [{word: "blu", prob: "1"}];
 				console.log($scope.data);
 			});
 		};
+
+
+		$scope.categories = ["All", "social science", "Art and Humanities", "Science", "Engineering", "Business Economics", "IT"];
+		$scope.currentCategory = "All";
+
+
+		$scope.$watch('currentCategory', function() {
+			_.each($scope.data, function (topic, index) {
+				if (topic.category === $scope.currentCategory || $scope.currentCategory === "All") {
+					topic.disabled = false;
+				} else {
+					topic.disabled = true;
+				}
+			})
+			//console.log($scope.data);
+		});
+
+		$scope.$watch('datatopic', function() {
+			alert("change");
+			//console.log($scope.data);
+		});
+
 
 		$scope.options = {
         chart: {
@@ -72,8 +96,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
             donut: true,
             x: function(d){return d.key;},
             y: function(d){return d.y;},
-            showLabels: true,
-
+            showLabels: false,
             pie: {
                 startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
                 endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
@@ -82,13 +105,56 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
             legend: {
                 margin: {
                     top: 5,
-                    right: 70,
+                    right: 120,
                     bottom: 5,
                     left: 0
                 }
-            }
+            },
+						pie: {
+							dispatch: {
+									elementClick: function(e) {
+										var label = e.label;
+										_.each($scope.profile.courses, function (course) {
+											_.each(course.topics, function(topic) {
+												if (topic.topicRef.name === label) {
+													console.log($scope);
+													$scope.$apply(function() {	$scope.datatopic = topic.topicRef.topwords});
+													//$scope.datatopic = topic.topicRef.topwords;
+													return;
+												}
+											});
+										});
+									},
+							}
+						},
         }
     };
+
+
+		$scope.optionstopic = {
+				chart: {
+						type: 'pieChart',
+						height: 450,
+						donut: true,
+						autorefresh: true,
+						x: function(d){return d.word;},
+						y: function(d){return d.prob;},
+						showLabels: false,
+						pie: {
+								startAngle: function(d) { return d.startAngle/2 -Math.PI/2 },
+								endAngle: function(d) { return d.endAngle/2 -Math.PI/2 }
+						},
+						transitionDuration: 500,
+						legend: {
+								margin: {
+										top: 5,
+										right: 120,
+										bottom: 5,
+										left: 0
+								}
+						}
+				}
+		};
 
 
 
@@ -101,12 +167,12 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		  // collect data from courses
 		  for(var i = 0; i < courses.length; i++){
 		    var course = courses[i];
-		    console.log(course.topics)
+		    //console.log(course.topics)
 		    for (var j = 0; j < course.topics.length; j++){
 		      var topic = course.topics[j];
 					var topicRef = topic['topicRef'];
 					var topicProb = topic['prob'];
-					console.log(topicProb)
+					//console.log(topicProb)
 					if (topicRef.name === '') {
 						continue;
 					}
@@ -114,12 +180,12 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		      if (topic['_id'] in topicData){
 		        topicData[topicRef['_id']]['numOcc'] += 1
 		        topicData[topicRef['_id']]['sumProb'] += topicProb
-				
+
 		      }else{
 		        topicData[topicRef['_id']] = {'name':topicRef['name'],'category':topicRef['category'],'children':topicRef['topWords'],'numOcc':1,'sumProb':topicProb}
 		      }
 		    }
-		  } // end of for courses.length	
+		  } // end of for courses.length
 
 		// create a bubble for each collected topic
 	  	for (var topicId in topicData){
@@ -127,7 +193,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 	    	nodesData.push(newNode);
 	  		}
 		return nodesData;
-		}	
+		}
 
 		function newTopicNode(topic){
 		    var newNode = {};
@@ -136,7 +202,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		    newNode["key"] = topic["name"]
 		    newNode["y"] = computeProb(topic);
 		    return newNode;
-		}	
+		}
 
 		function computeProb(topic){
 			var result = (topic['sumProb']*1./topic['numOcc'])*100;

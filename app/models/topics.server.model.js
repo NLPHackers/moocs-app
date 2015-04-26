@@ -31,7 +31,7 @@ var TopicSchema = new Schema({
 			default: '',
 			trim: true
 	  },
-		probability: {
+		prob: {
 			type: String,
 			default: 0
 		}

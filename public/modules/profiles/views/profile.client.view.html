@@ -26,7 +26,14 @@
 	        <p class="lead">{{profile.about}}</p>
 	      </div>
 	    </div>
-			<nvd3 options="options" data="data"></nvd3>
+			<div class="text-center">
+				<div class="btn-group">
+					<label ng-repeat="category in categories" class="btn btn-default" ng-model="$parent.currentCategory" btn-radio="category" />{{category}}</label>
+				</div>
+				<nvd3 options="options" data="data"></nvd3>
+				<nvd3 options="optionstopic" data="datatopic"></nvd3>
+			</div>
+
 	  </div>
 	</div>
 	<footer>

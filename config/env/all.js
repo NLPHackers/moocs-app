@@ -44,6 +44,7 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
+				'public/lib/nvd3/nv.d3.min.css'
 				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
