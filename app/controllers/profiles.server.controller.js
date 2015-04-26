@@ -12,20 +12,24 @@ var mongoose = require('mongoose'),
  * Create a profile
  */
 exports.create = function(req, res) {
+	console.log(req.body);
 	var profile = new Profile(req.body);
 
 	profile.save(function(err) {
 		if (err) {
+			console.log(err);
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			console.log(profile);
 			res.json(profile);
 		}
 	});
 };
 
 exports.get = function(req, res) {
+	console.log(req.profile);
 	res.json(req.profile);
 };
 
@@ -41,7 +45,7 @@ exports.profileByID = function(req, res, next, id) {
 		});
 	}
 
-	Profile.findById(id).populate('name', 'email').exec(function(err, profile) {
+	Profile.findById(id).populate('courses').exec(function(err, profile) {
 		if (err) return next(err);
 		if (!profile) {
 			return res.status(404).send({

@@ -8,6 +8,10 @@ angular.module('profiles').config(['$stateProvider',
 		state('create', {
 			url: '/create',
 			templateUrl: 'modules/profiles/views/create-profile.client.view.html'
+		}).
+		state('showProfile', {
+			url: '/profiles/:profileId',
+			templateUrl: 'modules/profiles/views/profile.client.view.html'
 		});
 	}
 ]);

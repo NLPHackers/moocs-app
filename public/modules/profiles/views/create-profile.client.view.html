@@ -38,7 +38,7 @@
 	  <div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-					<form>
+					<form class="form-horizontal" data-ng-submit="create()" >
 						<div class="form-group">
 							<label for="name"><i class="fa fa-user"></i>Full name</label>
 							<input type="text" class="form-control" ng-model="profile.name" id="exampleInputEmail1" placeholder="Jon Snow">
@@ -64,7 +64,7 @@
 								</span>
 							</div>
 						</div>
-						<table class="table table-striped" ng-show = "courses.length > 0">
+						<table class="table table-striped" ng-show = "profile.courses.length > 0">
 							<thead>
 					      <tr>
 					        <th>My courses</th>
@@ -72,7 +72,7 @@
 					      </tr>
 					    </thead>
 							<tbody>
-								<tr ng-repeat="course in courses">
+								<tr ng-repeat="course in profile.courses">
         					<td>{{course.name}}</td>
 									<td class="text-center" ng-click="removeCourse(course)"><i class="fa fa-times"></i></td>
 								</tr>
@@ -83,6 +83,10 @@
 					      <input type="checkbox"> I agree that these data will be stored during one year.
 					    </label>
 					  </div>
+				    <div class="alert alert-danger"  ng-show="error">
+				        <a href="#" class="close" data-dismiss="alert">&times;</a>
+				        <strong>Error!</strong> A problem has been occurred while submitting your data.
+				    </div>
 					  <button type="submit" class="btn btn-default">Get my profile !</button>
 					</form>
 				</div>

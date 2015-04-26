@@ -14,13 +14,22 @@ var ProfileSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	title: {
+	name: {
 		type: String,
 		default: '',
-		trim: true,
-		required: 'Title cannot be blank'
+		trim: true
 	},
-	content: {
+	description: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	email: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	about: {
 		type: String,
 		default: '',
 		trim: true
