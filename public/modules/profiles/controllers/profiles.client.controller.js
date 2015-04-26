@@ -62,8 +62,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 				profileId: $stateParams.profileId
 			}, function() {
 				$scope.data = transformData();
-				$scope.datatopic = [{word: "blu", prob: "1"}];
-				console.log($scope.data);
+				$scope.datatopic = [];
 			});
 		};
 
@@ -83,16 +82,11 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			//console.log($scope.data);
 		});
 
-		$scope.$watch('datatopic', function() {
-			alert("change");
-			//console.log($scope.data);
-		});
-
 
 		$scope.options = {
         chart: {
             type: 'pieChart',
-            height: 450,
+            height: 650,
             donut: true,
             x: function(d){return d.key;},
             y: function(d){return d.y;},
@@ -117,7 +111,6 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 										_.each($scope.profile.courses, function (course) {
 											_.each(course.topics, function(topic) {
 												if (topic.topicRef.name === label) {
-													console.log($scope);
 													$scope.$apply(function() {	$scope.datatopic = topic.topicRef.topwords});
 													//$scope.datatopic = topic.topicRef.topwords;
 													return;
@@ -134,7 +127,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		$scope.optionstopic = {
 				chart: {
 						type: 'pieChart',
-						height: 450,
+						height: 650,
 						donut: true,
 						autorefresh: true,
 						x: function(d){return d.word;},
@@ -164,25 +157,40 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		  var courses = $scope.profile.courses;
 		  var topicData = {}; //{id:{name:,prob:,numOcc:,sumProb}
 		  var nodesData = [];
+
 		  // collect data from courses
 		  for(var i = 0; i < courses.length; i++){
-		    var course = courses[i];
-		    //console.log(course.topics)
+
+        var course = courses[i]
+
+        // normalize probabilities per course
+        var courseProbs = {}
+        var courseProbSum = 0
+		    for (var j = 0; j < course.topics.length; j++){
+          if (course.topics[j]['topicRef'].name === '') {
+            continue;
+          }
+
+          var topicProb = parseFloat(course.topics[j]['prob']);
+          courseProbSum += topicProb;
+          courseProbs[j] = topicProb
+        }
+        var normalizedCourseProbs = normalize(courseProbs,courseProbSum)
+
+
 		    for (var j = 0; j < course.topics.length; j++){
 		      var topic = course.topics[j];
 					var topicRef = topic['topicRef'];
 					var topicProb = topic['prob'];
-					//console.log(topicProb)
 					if (topicRef.name === '') {
 						continue;
 					}
 		      // collect topic information
 		      if (topic['_id'] in topicData){
 		        topicData[topicRef['_id']]['numOcc'] += 1
-		        topicData[topicRef['_id']]['sumProb'] += topicProb
-
+		        topicData[topicRef['_id']]['sumProb'] += normalizedCourseProbs[j];
 		      }else{
-		        topicData[topicRef['_id']] = {'name':topicRef['name'],'category':topicRef['category'],'children':topicRef['topWords'],'numOcc':1,'sumProb':topicProb}
+		        topicData[topicRef['_id']] = {'name':topicRef['name'],'category':topicRef['category'],'children':topicRef['topWords'],'numOcc':1,'sumProb':normalizedCourseProbs[j]}
 		      }
 		    }
 		  } // end of for courses.length
@@ -200,13 +208,21 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		    newNode["id"] = topic["_id"];
 		    newNode["category"] = topic["category"];
 		    newNode["key"] = topic["name"]
-		    newNode["y"] = computeProb(topic);
+		    newNode["y"] = computeProb(topic)
 		    return newNode;
 		}
 
+    function normalize(probs,probSum){
+      var result = {}
+      var prob_factor = 1 / probSum;
+      for (var probKey in probs){
+        result[probKey] = prob_factor*probs[probKey]
+      }
+      return result
+    }
+
 		function computeProb(topic){
 			var result = (topic['sumProb']*1./topic['numOcc'])*100;
-			//console.log(result);
 		  return result;
 		}
 	}

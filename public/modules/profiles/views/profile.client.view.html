@@ -4,14 +4,10 @@
 	    <div class="navbar-header">
 	      <a href="/#!/" class="navbar-brand">by Moocs.us</a>
 	      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
 	      </a>
 	    </div>
 	    <div class="navbar-collapse collapse" id="navbar">
 	      <ul class="nav navbar-nav">
-	        <li><a href="#sec1">Such graph</a></li>
-	        <li><a href="#sec2">Wow</a></li>
 	      </ul>
 	    </div>
 	   </div>
@@ -20,20 +16,22 @@
 	<div id="sec1" class="blurb">
 	  <div class="container">
 	    <div class="row">
-	      <div class="col-md-12">
+	      <div class="col-md-12 text-center">
 	        <h1>{{profile.name}}</h1>
 					<h2>{{profile.email}}</h2>
 	        <p class="lead">{{profile.about}}</p>
 	      </div>
-	    </div>
+				    </div>
 			<div class="text-center">
+				<h3>I know about ...</h3>
+				<nvd3 options="options" data="data"></nvd3>
+				<h3>Filter by field ...</h3>
 				<div class="btn-group">
 					<label ng-repeat="category in categories" class="btn btn-default" ng-model="$parent.currentCategory" btn-radio="category" />{{category}}</label>
 				</div>
-				<nvd3 options="options" data="data"></nvd3>
+				<h3>Or click on the graph to get topic details ...</h3>
 				<nvd3 options="optionstopic" data="datatopic"></nvd3>
 			</div>
-
 	  </div>
 	</div>
 	<footer>
