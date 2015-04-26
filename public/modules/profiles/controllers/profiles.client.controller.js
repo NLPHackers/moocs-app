@@ -93,57 +93,55 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 
 
 
-				// transform data so that it can easily be read with d3
-				function transformData(){
-				  var courses = $scope.profile.courses;
-				  var topicData = {}; //{id:{name:,prob:,numOcc:,sumProb}
-					var nodesData = [];
-				  // collect data from courses
-				  for(var i = 0; i < courses.length; i++){
-				    var course = courses[i];
-				    console.log(course.topics)
-				    for (var j = 0; j < course.topics.length; j++){
-				      var topic = course.topics[j];
-							var topicRef = topic['topicRef'];
-							if (topicRef.name === '') {
-								continue;
-							}
-				      // collect topic information
-				      if (topic['_id'] in topicData){
+		// transform data so that it can easily be read with d3
+		function transformData(){
+		  var courses = $scope.profile.courses;
+		  var topicData = {}; //{id:{name:,prob:,numOcc:,sumProb}
+		  var nodesData = [];
+		  // collect data from courses
+		  for(var i = 0; i < courses.length; i++){
+		    var course = courses[i];
+		    console.log(course.topics)
+		    for (var j = 0; j < course.topics.length; j++){
+		      var topic = course.topics[j];
+					var topicRef = topic['topicRef'];
+					var topicProb = topic['prob'];
+					console.log(topicProb)
+					if (topicRef.name === '') {
+						continue;
+					}
+		      // collect topic information
+		      if (topic['_id'] in topicData){
+		        topicData[topicRef['_id']]['numOcc'] += 1
+		        topicData[topicRef['_id']]['sumProb'] += topicProb
+				
+		      }else{
+		        topicData[topicRef['_id']] = {'name':topicRef['name'],'category':topicRef['category'],'children':topicRef['topWords'],'numOcc':1,'sumProb':topicProb}
+		      }
+		    }
+		  } // end of for courses.length	
 
-				        topicData[topicRef['_id']]['numOcc'] += 1
-				        topicData[topicRef['_id']]['sumProb'] += topicRef['prob']
-								console.log( topicData[topicRef['_id']]['sumProb'])
-				      }else{
+		// create a bubble for each collected topic
+	  	for (var topicId in topicData){
+	    	var newNode = newTopicNode(topicData[topicId])
+	    	nodesData.push(newNode);
+	  		}
+		return nodesData;
+		}	
 
-				        topicData[topicRef['_id']] = {'name':topicRef['name'],'category':topicRef['category'],'children':topicRef['topWords'],'numOcc':1,'sumProb':topicRef['prob']}
-				      }
-				    }
-				  } // end of for courses.length
+		function newTopicNode(topic){
+		    var newNode = {};
+		    newNode["id"] = topic["_id"];
+		    newNode["category"] = topic["category"];
+		    newNode["key"] = topic["name"]
+		    newNode["y"] = computeProb(topic);
+		    return newNode;
+		}	
 
-				  // create a bubble for each collected topic
-				  for (var topicId in topicData){
-				    var newNode = newTopicNode(topicData[topicId])
-				    nodesData.push(newNode);
-				  }
-
-					return nodesData;
-				}
-
-				function newTopicNode(topic){
-				    var newNode = {};
-				    newNode["id"] = topic["_id"];
-				    newNode["category"] = topic["category"];
-				    newNode["key"] = topic["name"]
-				    newNode["y"] = computeProb(topic);
-				    return newNode;
-				}
-
-				function computeProb(topic){
-					var result = (topic['sumProb']*1./topic['numOcc'])*100;
-
-					//console.log(result);
-				  return result;
-				}
+		function computeProb(topic){
+			var result = (topic['sumProb']*1./topic['numOcc'])*100;
+			//console.log(result);
+		  return result;
+		}
 	}
 ]);
