@@ -1,8 +1,8 @@
 'use strict';
 
 // Articles controller
-angular.module('profilesUser').controller('ProfilesController', ['$scope', '$stateParams', '$location', '$http', 'Profiles',
-	function($scope, $stateParams, $location, $http, Profiles) {
+angular.module('profilesUser').controller('ProfilesController', ['$scope', '$stateParams', '$location',  'Courses', '$http', 'Profiles',
+	function($scope, $stateParams, $location, Courses, $http, Profiles) {
 		$scope.getAddress = function(viewValue) {
 			var params = {address: viewValue, sensor: false};
 			return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: params})
@@ -14,9 +14,11 @@ angular.module('profilesUser').controller('ProfilesController', ['$scope', '$sta
 		$scope.profile = {};
 		$scope.profile.courses = [];
 
+		$scope.courses = Courses.query();
 		$scope.addCourse = function(course) {
-			if ($scope.profile.courses.indexOf(course) === -1) {
+			if ($scope.profile.courses.indexOf(course) === -1 && $scope.courses.indexOf(course) >= 0) {
 				$scope.profile.courses.push(course);
+				$scope.selectedCourse="";
 			}
 		};
 

@@ -10,6 +10,14 @@ body {
   font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
+.neutral-white{
+  color: #fff;
+}
+
+.neutral-black{
+  color: #000;
+}
+
 /* fix bs3 horizontal scrollbar bug */
 .row { margin: 0; padding: 0 }
 
@@ -24,6 +32,9 @@ img.grayscale {
     -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
 }
 
+.img-circle {
+  height:auto; width:auto; max-width:90px; max-height:90px;
+}
 .icon-bar {
    background-color:#fff;
 }
@@ -40,28 +51,45 @@ img.grayscale {
 }
 
 .scroll-top {
-  background-color:#33ee67;
+  background-color:#222;
 }
 
 .header .btn-lg {
    font-size:28px;
-   border-color:#eeeeee;
+   border-color:#eee;
    padding:15px;
    background-color:transparent;
-   color:#ffffff;
+   color:#eee;
 }
 
 .header .btn-lg:hover {
    background-color:#eeeeee;
-   color:#777777;
+   color:#222;
 }
 
+.start .btn-lg {
+   font-size:28px;
+   border-color:#eee;
+   padding:15px;
+   background-color:transparent;
+   color:#eee;
+   margin-bottom: 30px;
+}
+
+.start .btn-lg:hover {
+   background-color:#eeeeee;
+   color:#222;
+}
+
+.get-started {
+  margin-top: 10vh;
+}
 .navbar a {
   color:#fff;
 }
 
 .navbar-bold.affix {
-  background-color:#33ee67;
+  background-color:#222;
 }
 
 .navbar-bold {
@@ -89,6 +117,14 @@ img.grayscale {
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
+.header .copyright {
+  font-size: 9px;
+  position: absolute;
+  top: 66%;
+  right: 2px;
+  color: #fff;
+}
+
 .header .lead {
   color:#eeeeee;
   font-size:25px;
@@ -96,13 +132,13 @@ img.grayscale {
 
 .header {
   height: 70%;
-  background-image: url('../img/cover2.jpg');
+  background-image: url('../img/rolex4.jpg');
 	background-attachement: fixed;
 	background-size: cover;
 }
 
 .blurb {
-  padding: 120px 0;
+  padding: 60px 0;
   background-color:#fefefe;
 }
 
@@ -144,8 +180,8 @@ img.grayscale {
 .callout {
   color: #ffffff;
   padding-top:5%;
-  height: 50%;
   width: 100%;
+  min-height: 45%;
   background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -170,6 +206,14 @@ footer {
   padding: 100px 0;
 }
 
+.courses-label {
+  font-size: 160%;
+}
+
+.form-icon {
+  padding-right: 10px;
+}
+
 /* -- end custom css for Bootstrap 3.x --*/
 
 .table-striped>tbody>tr:nth-child(odd)>td,
@@ -180,28 +224,4 @@ footer {
 .table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(even)>th {
   background-color: #666;
-}
-
-
-
-
-.content {
-	margin-top: 50px;
-}
-.undecorated-link:hover {
-	text-decoration: none;
-}
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
-}
-.ng-invalid.ng-dirty {
-	border-color: #FA787E;
-}
-.ng-valid.ng-dirty {
-	border-color: #78FA89;
-}
-.browsehappy.jumbotron.hide,
-body.ng-cloak
-{
-	display: block;
 }

@@ -40,27 +40,15 @@
 				<div class="col-md-6 col-md-offset-3">
 					<form class="form-horizontal" data-ng-submit="create()" >
 						<div class="form-group">
-							<label for="name"><i class="fa fa-user"></i>Full name</label>
+							<label for="name"><i class="fa fa-user form-icon"></i>Full name *</label>
 							<input type="text" class="form-control" ng-model="profile.name" id="exampleInputEmail1" placeholder="Jon Snow">
 						</div>
-					  <div class="form-group">
-					    <label for="email"><i class="fa fa-envelope-o"></i>Email address</label>
-					    <input type="email" class="form-control" ng-model="profile.email" id="exampleInputEmail1" placeholder="jon@snow.us">
-					  </div>
 						<div class="form-group">
-					  	<label for="about"><i class="fa fa-comment-o"></i>About you</label>
-					  	<textarea class="form-control"  ng-model="profile.about" rows="5" id="comment" placeholder="I'm Jon Snow and I know nothing."></textarea>
-						</div>
-						<div class="form-group">
-							<label><i class="fa fa-home"></i>Address</label>
-							<input class="form-control" ng-model="profile.address" data-animation="am-flip-x" typeahead="address.formatted_address as address.formatted_address for address in getAddress($viewValue)" placeholder="Winterfell" typeahead-on-select="onSelect($item)" type="text">
-						</div>
-						<div class="form-group" data-ng-controller="CoursesController">
-							<label><i class="fa fa-home"></i>Courses I followed</label>
+							<label class="courses-label"><i class="fa fa-home form-icon"></i>Courses I followed *</label>
 							<div class="input-group">
 								<input type="text" ng-model="selectedCourse" placeholder="Artificial Intelligence" typeahead="course as course.name for course in courses | filter:{name:$viewValue}  | limitTo:4" typeahead-template-url="customTemplate.html" class="form-control">
 								<span class="input-group-btn">
-									<button class="btn btn-default" type="button" ng-click="$parent.addCourse(selectedCourse)">Add</button>
+									<button class="btn btn-default" type="button" ng-click="addCourse(selectedCourse)">Add</button>
 								</span>
 							</div>
 						</div>
@@ -78,16 +66,35 @@
 								</tr>
 							</tbody>
 						</table>
-						<div class="checkbox">
-					    <label>
-					      <input type="checkbox"> I agree that these data will be stored during one year.
-					    </label>
+					  <div class="form-group">
+					    <label for="email"><i class="fa fa-envelope-o form-icon"></i>Email address</label>
+					    <input type="email" class="form-control" ng-model="profile.email" id="exampleInputEmail1" placeholder="jon@snow.us">
 					  </div>
-				    <div class="alert alert-danger"  ng-show="error">
-				        <a href="#" class="close" data-dismiss="alert">&times;</a>
-				        <strong>Error!</strong> A problem has been occurred while submitting your data.
-				    </div>
-					  <button type="submit" class="btn btn-default">Get my profile !</button>
+						<div class="form-group">
+					  	<label for="about"><i class="fa fa-comment-o form-icon"></i>About you</label>
+					  	<textarea class="form-control"  ng-model="profile.about" rows="5" id="comment" placeholder="I'm Jon Snow and I know nothing."></textarea>
+						</div>
+						<div class="form-group">
+							<label><i class="fa fa-home form-icon"></i>Address</label>
+							<input class="form-control" ng-model="profile.address" data-animation="am-flip-x" typeahead="address.formatted_address as address.formatted_address for address in getAddress($viewValue)" placeholder="Winterfell" typeahead-on-select="onSelect($item)" type="text">
+						</div>
+						<div class="form-group">
+							<div class="checkbox">
+						    <label>
+						      <input type="checkbox"> I agree that these data will be stored during one year.
+						    </label>
+						  </div>
+						</div>
+						<div class="form-group">
+					    <div class="alert alert-danger"  ng-show="error">
+					        <a href="#" class="close" data-dismiss="alert">&times;</a>
+					        <strong>Error!</strong> A problem has been occurred while submitting your data.
+					    </div>
+							<div class="alert alert-info"  ng-if="profile.courses.length == 0">
+								You need to add at least one course to proceed !
+							</div>
+						  <button type="submit" class="btn btn-default" ng-if="profile.courses.length > 0">Get my profile !</button>
+					</div>
 					</form>
 				</div>
 			</div>
@@ -95,23 +102,22 @@
 	</div>
 </div>
 
-	<footer>
-	  <div class="container">
-	    <div class="row">
-	      <div class="col-md-6 col-md-offset-3 text-center">
-	        <ul class="list-inline">
-	          <li><i class="icon-facebook icon-2x"></i></li>
-	          <li><i class="icon-twitter icon-2x"></i></li>
-	          <li><i class="icon-google-plus icon-2x"></i></li>
-	          <li><i class="icon-pinterest icon-2x"></i></li>
-	        </ul>
-	        <hr>
-	        <p>Built with <i class="fa fa-heart"></i> at AFT hackathon Leuven</p>
-					<p> using NodeJS, Express, AngularJS, MongoDB, Bootstrap ...
-	      </div>
-	    </div>
-	  </div>
-	</footer>
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<ul class="list-inline">
+					<li><a href="https://github.com/NLPHackers/moocs-app" class="neutral-black"><i class="fa fa-github fa-3x"></i></a></li>
+				</ul>
+				<hr>
+				<h3>Built with <i class="fa fa-heart"></i> at AFT hackathon Leuven </h3>
+				<h3><em>"Most promising Hack"</em> award</h3>
+				<p> using <a href="https://nodejs.org/">NodeJS</a>, <a href="http://expressjs.com/">Express</a>, <a href="https://angularjs.org/">AngularJS</a>, <a href="https://www.mongodb.org/">MongoDB</a>, <a href="http://d3js.org/">D3.js</a>, <a href="http://getbootstrap.com/">Bootstrap</a> (<a href="http://www.bootstrapzero.com/bootstrap-template/greenfield">Greenfield Template</a>), <a href="http://gruntjs.com/">Grunt</a>, <a href="http://mallet.cs.umass.edu/">MALLET</a>...
+				<p>Copyright © Aubry Cholleton, Daniela Gerz, Matteo Pagliardini</p>
+			</div>
+		</div>
+	</div>
+</footer>
 
 	<ul class="nav pull-right scroll-down">
 	  <li><a href="#" title="Scroll down"><i class="fa fa-arrow-down"></i></a></li>
