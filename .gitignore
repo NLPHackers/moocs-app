@@ -21,6 +21,7 @@ app/tests/coverage/
 config/sslcerts/*.pem
 access.log
 public/dist/
+!public/dist/.gitkeep
 
 # Sublime editor
 # ==============
