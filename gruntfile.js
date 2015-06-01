@@ -175,7 +175,7 @@ module.exports = function(grunt) {
 
 	// Build task(s).
 	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
-	grunt.registerTask('heroku:production', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+	grunt.registerTask('heroku:production', ['build']);
 
 	// Test task.
 	grunt.registerTask('test', ['test:server', 'test:client']);
