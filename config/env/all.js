@@ -44,7 +44,8 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
-				'public/lib/nvd3/nv.d3.min.css'
+				'public/lib/nvd3/nv.d3.min.css',
+				'public/lib/components-font-awesome/css/font-awesome.min.css'
 				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
@@ -63,8 +64,7 @@ module.exports = {
 			]
 		},
 		css: [
-			'public/modules/**/css/*.css',
-			'public/lib/components-font-awesome/css/font-awesome.min.css'
+			'public/modules/**/css/*.css'
 		],
 		js: [
 			'public/config.js',
