@@ -130,6 +130,12 @@ module.exports = function(grunt) {
 			},
 			secure: {
 				NODE_ENV: 'secure'
+			},
+			development: {
+				NODE_ENV: 'development'
+			},
+			production: {
+				NODE_ENV: 'production'
 			}
 		},
 		mochaTest: {
@@ -175,7 +181,7 @@ module.exports = function(grunt) {
 
 	// Build task(s).
 	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
-	grunt.registerTask('heroku:production', ['build']);
+	grunt.registerTask('heroku:production', ['env:development', 'build', 'env:production']);
 
 	// Test task.
 	grunt.registerTask('test', ['test:server', 'test:client']);
