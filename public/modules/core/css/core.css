@@ -129,7 +129,7 @@ img.grayscale {
 
 .header {
   height: 70%;
-  background-image: url('../img/rolex4.jpg');
+  background-image: url('/modules/core/img/rolex4.jpg');
 	background-attachement: fixed;
 	background-size: cover;
 }
@@ -174,7 +174,7 @@ img.grayscale {
   padding-top:5%;
   width: 100%;
   min-height: 45%;
-  background: url('http://www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
+  background: url('//www.bootply.com/assets/example/bg_suburb.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
