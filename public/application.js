@@ -5,7 +5,8 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 
 // Setting HTML5 Location Mode
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-	function($locationProvider) {
+'$uiViewScrollProvider', function($locationProvider, $uiViewScrollProvider) {
+		$uiViewScrollProvider.useAnchorScroll();
 		$locationProvider.hashPrefix('!');
 	}
 ]);
