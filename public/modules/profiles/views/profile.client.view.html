@@ -30,8 +30,8 @@
 				<div class="btn-group">
 					<label ng-repeat="category in categories" class="btn btn-default" ng-model="$parent.currentCategory" btn-radio="category" />{{category}}</label>
 				</div>
-				<h3>Or click on the graph to get topic details ...</h3>
-				<nvd3 options="optionstopic" data="datatopic"></nvd3>
+				<h3>Or click on the graph above to get more details about one topic ...</h3>
+				<nvd3 options="optionstopic" data="datatopic" ng-show="datatopic.length > 0"></nvd3>
 			</div>
 	  </div>
 	</div>

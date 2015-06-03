@@ -22,7 +22,7 @@
 	    <div class="row">
 	      <div class="col-md-12 text-center">
 	        <h1>Time to talk about you {{profile.name}}</h1>
-	        <p class="lead">Tell us a bit more about yourself and which classes you attented recently. These informations will stay confidential. Provide what you want.</p>
+	        <p class="lead">Tell us a bit more about yourself and which classes you attented recently. These data will stay confidential. Provide only what you want.</p>
 	      </div>
 	    </div>
 	  </div>
@@ -44,7 +44,7 @@
 							<input type="text" class="form-control" ng-model="profile.name" id="exampleInputEmail1" placeholder="Jon Snow">
 						</div>
 						<div class="form-group">
-							<label class="courses-label"><i class="fa fa-home form-icon"></i>Courses I followed *</label>
+							<label class="courses-label"><i class="fa fa-home form-icon"></i>Courses (MOOCs) I followed*</label>
 							<div class="input-group">
 								<input type="text" ng-model="selectedCourse" placeholder="Artificial Intelligence" typeahead="course as course.name for course in courses | filter:{name:$viewValue}  | limitTo:4" typeahead-template-url="customTemplate.html" class="form-control">
 								<span class="input-group-btn">
@@ -66,6 +66,9 @@
 								</tr>
 							</tbody>
 						</table>
+						<div class="alert alert-info"  ng-if="profile.courses.length == 0">
+							Start typing in the text field above to find corresponding MOOCs from the most popular platforms. Add all the ones you completed !
+						</div>
 					  <div class="form-group">
 					    <label for="email"><i class="fa fa-envelope-o form-icon"></i>Email address</label>
 					    <input type="email" class="form-control" ng-model="profile.email" id="exampleInputEmail1" placeholder="jon@snow.us">

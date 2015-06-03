@@ -100,7 +100,9 @@ angular.module('profilesUser').controller('ProfilesController', ['$scope', '$sta
 										_.each($scope.profile.courses, function (course) {
 											_.each(course.topics, function(topic) {
 												if (topic.topicRef.name === label) {
-													$scope.$apply(function() {	$scope.datatopic = topic.topicRef.topwords});
+													$scope.$apply(function() {
+														$scope.datatopic = topic.topicRef.topwords;
+													});
 													//$scope.datatopic = topic.topicRef.topwords;
 													return;
 												}
