@@ -206,6 +206,20 @@ footer {
   padding-right: 10px;
 }
 
+.form-main {
+  border-radius: 18px;
+  padding: 20px;
+  background-color: #666;
+}
+
+.form-main-info {
+  margin-top: 20px;
+}
+
+.dropdown-menu {
+  width:100%;
+  overflow-x: hidden;
+}
 /* -- end custom css for Bootstrap 3.x --*/
 
 .table-striped>tbody>tr:nth-child(odd)>td,
